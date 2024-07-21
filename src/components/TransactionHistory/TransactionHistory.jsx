@@ -1,20 +1,30 @@
+import css from './TransactionHistory.module.css';
+import clsx from 'clsx';
+
 const TransactionHistory = ({ transactions }) => {
+  function isOdd(index) {
+    return !(index % 2 === 0);
+  }
+
   return (
-    <table>
+    <table className={css.table}>
       <thead>
-        <tr>
-          <th>Type</th>
-          <th>Amount</th>
-          <th>Currency</th>
+        <tr className={css.tr}>
+          <th className={css.th}>Type</th>
+          <th className={css.th}>Amount</th>
+          <th className={css.th}>Currency</th>
         </tr>
       </thead>
 
       <tbody>
-        {transactions.map((transaction) => (
-          <tr key={transaction.id}>
-            <td>{transaction.type}</td>
-            <td>{transaction.amount}</td>
-            <td>{transaction.currency}</td>
+        {transactions.map((transaction, index) => (
+          <tr
+            className={clsx(css.tr, { [css.grey]: isOdd(index) })}
+            key={transaction.id}
+          >
+            <td className={(css.td, css.tc)}>{transaction.type}</td>
+            <td className={css.td}>{transaction.amount}</td>
+            <td className={css.td}>{transaction.currency}</td>
           </tr>
         ))}
       </tbody>

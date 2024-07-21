@@ -6,9 +6,11 @@ import userData from '../../data/userData.json';
 import friends from '../../data/friends.json';
 import transactions from '../../data/transactions.json';
 
+import css from './App.module.css'
+
 const App = () => {
   return (
-    <div className="container">
+    <div className={css.container}>
       <Profile
         name={userData.username}
         tag={userData.tag}
